@@ -37,7 +37,6 @@ format:
     colorlinks: true
     highlight-style: github
     fontsize: 12pt
-    column: page-right
 jupyter:
   jupytext:
     text_representation:
@@ -72,6 +71,20 @@ Hello [@Verma2021].
 {{< pagebreak >}}
 
 ## References
+
+## Data Presentation
+
+Hello [@Verma2021].
+
+![Matrix of origin-destination (flow) data](../picture/matrix.png)
+
+| Default | Left | Right | Center |
+|---------|:-----|------:|:------:|
+| 12      | 12   |    12 |   12   |
+| 123     | 123  |   123 |  123   |
+| 1       | 1    |     1 |   1    |
+
+: 123
 
 ```{python}
 # \vspace{100pt}
