@@ -50,42 +50,99 @@ jupyter:
     name: python3
 ---
 
-# London
+# Analysis of commuting patterns between Middle layer Super Output Areas (MSOAs) in London based on clustering method
 
 ## Introduction
 
+Commuting patterns reflect a city’s economic geography [@Ratti2010], and studying people’s commuting patterns is crucial to understanding a city’s economic development [@Martin2018]. The Census provides large and complex commuting data for this purpose, which are presented in the form of an origin-destination stream that reflects the mobility of people between regions. In addition, differences between populations should not be ignored when analyzing mobility data [@Shen2019]. Therefore, this study will be based on commuting data from the London regional census, focusing on exploring whether the mobility patterns of people of different social grade in different Middle layer Super Output Areas (MSOAs) show clustering phenomena. We first assume that this pattern is completely spatially random, which also suggests that people's usual working locations are randomly distributed. The correctness of the hypothesis will be tested in the subsequent analysis.
+
 ## Literature Review
 
-Hello [@Verma2021].
+Origin-destination (OD) flow data can be regarded as trajectory data with a coarser resolution in time and space. It retains the geographical location information of the starting point and end point of the real trajectory, implying the direction and distance of the trajectory [@Guo2014]. The idea of using clustering to analyze OD flow is divided into point-based clustering and line-based clustering [@Guo2020]. Point-based clustering considers the similarity of points and is based on metrics such as Euclidean distance, using K-means [@Heredia2022], hierarchical clustering [@Zhu2014], Density-based clustering [@Pei2015], etc. to find point clusters. Line-based clustering considers the similarity of lines and is based on metrics such as Dynamic Time Warping (DTW) distance or geometric features, using TR-OPTICS [@Shuliang2018], Fast-clusiVAT [@Kumar2018], TRACLUS [@ Lee2007] and other methods to find line clusters. In general, point-based clustering is easier to implement, and the computational complexity is lower than line-based clustering. For more complex origin-destination (OD) flow data or trajectory data, more accurate clustering results can be obtained by using line-based clustering methods.
 
 ## Data Presentation
 
+This study uses origin-destination data from the 2021 UK Census [@zotero-272]. Specifically, Origin-destination public data contains a total of 30 datasets, consisting of main flows, univariate and multivariate datasets. These datasets are divided into four types. We selected the OD flow dataset divided by approximated social grade, which belongs to the Origin-destination Workplace data type. 
+
+This dataset has a total of 3760,466 rows of data. The data of London MSOAs was selected through filtering, and there are specifically 565,668 rows. The dataset contains several main key fields, as shown in Table 1. The four social grade are represented below by AB, C1, C2, and DE. By selecting the top 50 pieces of data with the most traffic, the OD matrix is drawn, as shown in Figure 1, which clearly presents the relationship between the origin and the destination. It is not difficult to find that the matrix has no values in most cells, which indicates that the OD matrix is a sparse matrix in most cases. In addition, cells with numerical values are clustered on specific vertical coordinates (destination). 
+
+Further combined with the location information of MSOAs, the 100 pieces of data with the most traffic in different social grade were selected. The spatial distribution of OD flow is shown in Figure 2. From Figure 2, it can be clearly found that there is an obvious clustering phenomenon in the working places of people of different social grade, and there are also different clustering phenomena between different social grade. Next, quantitative clustering methods will be used for analysis.
+
++----------------------------------------+---------------------------------------------------------------------------------------------+
+| Key fields                             | Description                                                                                 |
++========================================+=============================================================================================+
+| MSOAs code                             | Origin area code                                                                            |
++----------------------------------------+---------------------------------------------------------------------------------------------+
+| MSOA of workplace code                 | Destination area code                                                                       |
++----------------------------------------+---------------------------------------------------------------------------------------------+
+| Approximated social grade              | There are four social grades in total: AB, C1, C2, and DE                                   |
++----------------------------------------+---------------------------------------------------------------------------------------------+
+|                                        | - AB: Higher and intermediate managerial/administrative/professional occupations            |
+|                                        | - C1: Supervisory, clerical and junior managerial/administrative/professional occupations   |
+|                                        | - C2: Skilled manual occupations                                                            |
+|                                        | - DE: Semi-skilled and unskilled manual occupations; unemployed and lowest grade occupations|
++----------------------------------------+---------------------------------------------------------------------------------------------+
+| Count                                  | Commuting flows                                                                             |
++----------------------------------------+---------------------------------------------------------------------------------------------+
+
+: The main key fields of origin-destination flow data
+
+![Matrix of origin-destination flow data](../picture/matrix.png){width=80%}
+
+![Spatial distribution of origin-destination flow data](../picture/flow_data_map.png){width=80%}
+
 ## Methodology
+
+Since K-means is a commonly used and relatively simple clustering method that can quickly provide clustering results with certain reasonableness, K-means is first used to perform cluster analysis on the OD flow data of people of different social grade. The core of K-means is to aggregate n data into specified k clusters based on the similarity between the data. The similarity between the data is calculated using the Euclidean distance. The K-means method is greatly affected by the K value, so choosing a reasonable K value will determine the accuracy of the clustering results. We use four methods to determine the K value for comprehensive comparison. These methods are Elbow Method, Silhouette Score, Calinski-Harabasz Index, and Davies-Bouldin Index. Select different K values to calculate the results of these four methods respectively, as shown in Figure 3. Elbow Method needs to find the critical point of data change. Silhouette Score and Calinski-Harabasz Index both have a larger value, the better, while the Davies-Bouldin Index value has a smaller value, the better. Therefore, through Figure 3 we determine that for the OD flow data with a social level of AB, the K value is 5; For the OD flow data with a social level of C1, the K value is 6; For the OD flow data with a social level of C2, the K value is 2 ; For OD flow data whose social grade is DE, the K value is 8. After selecting a reasonable K value, the K-means method can be applied for cluster analysis.
+
+Considering that the actual OD flow dataset can have clusters of arbitrary shapes and some abnormal data, using K-means may not be able to obtain more appropriate clustering results, so density-based clustering methods can be used. Hierarchical Density-Based Spatial Clustering of Applications with Noise (HDBSCAN), as a stable density-based clustering method, is an improved method of Density-based spatial clustering of applications with noise (DBSCAN). HDBSCAN first uses mutual reachability distance to measure the similarity of two points. Mutual reachability distance is defined as 
+
+$$
+d_{\text{mreach}-k}(a, b) = \max \{\text{core}_k(a), \text{core}_k(b), d(a, b)\},
+$$
+
+where $$ d(a, b) $$ represents the original distance between point a and point b, and $$ \text{core}_k(b) $$ is defined as the current point x to its k-th distance between close points. And the mutual reachability distance allow HDBSCAN to handle data with uneven density. After that, the minimum spanning tree is used to construct a hierarchical tree model between points, and the idea of hierarchical clustering is introduced. This allows HDBSCAN to automatically obtain optimal clustering results by simply setting the minimum size of the cluster (minPts). For the OD flow dataset, after many attempts, it was determined that minPts was set to 4.
+
+![Four ways to choose the appropriate K value](../picture/Kmeans_cluster_number.png){width=80%}
 
 ## Results
 
+The clustering results of K-means are shown in Figure 4. At the same time, we calculated the area with the highest occurrence of work location in the clustering results, and the results are shown in Table 2. Combining Figure 4 and Table 2, it can be found that the workplaces of people with social grade AB are basically located in City of London 001, and their residences are also in areas closer to the city center; The workplaces of people with social grade C1 are mostly located in Hillingdon 031, a small number of work places are scattered in different locations in the city; Most of the work places of people with social grade C2 are also in Hillingdon 031, and the rest of the work places are scattered in the northeastern area of the city; People with social grade DE have a large number of work places at Hillingdon 031 and Brent 027, with the remaining work locations scattered across the city.
+
+The clustering results of HDBSCAN are shown in Figure 5, and the results are more detailed. The clustering results of the social grade AB are divided into 5 clusters, which more carefully divides the OD flow of different commuting distances and directions; The clustering results of the social grade C1 are divided into more clusters, and it can be found that there are many smaller clusters around Hillingdon 031; The clustering results of social grade C2 are also divided into more clusters, spread in the west, south and northeast of the city; The clustering results of social grade DE are roughly the same as K-means.
+
+![Clustering results of K-means](../picture/Kmeans_result.png){width=80%}
+
++--------------+----------------------+
+| Social grade | Main destination     |
++==============+======================+
+| AB           | - City of London 001 |
++--------------+----------------------+
+| C1           | - Hillingdon 031     |
+|              | - City of London 001 |
++--------------+----------------------+
+| C2           | - Hillingdon 031     |
++--------------+----------------------+
+| DE           | - Hillingdon 031     |
+|              | - Brent 027          |
++--------------+----------------------+
+
+: MSOA with the highest occurrences of destination
+
+![Clustering results of HDBSCAN](../picture/Hdbscan_result.png){width=80%}
+
 ## Discussion
 
+Comparing the clustering results of K-means and HDNSCAN with London house prices per square meter map [@Plumplot] and London net household income map [@Plumplota], we found that people with social grade AB have higher incomes and also live in places with higher housing prices; Some people with social grades of C1, C2, and DE also have higher incomes, but most of them live in places with cheaper housing prices. Other research shows that people with higher socioeconomic status can bear more commuting costs than those with lower socioeconomic status and therefore can adapt to longer trips [@Dargay2012], but it can also be found from the clustering results that there are still some people with lower economic status who may choose longer commuting distances due to housing prices.
+
+In addition, according to the London area demographic map [@Ibbetson2020], it is found that the area around Hillingdon 031 has a large population, and the northeastern region also has a large population, which is consistent with our clustering results. In addition, the clustering results are also highly correlated with job opportunities. From the London MSOA employment map [@Hill2018], it can be clearly seen that most job opportunities are distributed around Hillingdon 031, City of London 001 and the eastern region. All these can illustrate the gradual emergence of multiple urban centers in London, and the need to pay attention to changes in regional structure in future urban planning.
+
 ## Conclusions
+
+This study applies K-means and HDBSCAN clustering methods to London OD flow data, analyzes the commuting patterns of people of different social grade among MSOAs, and explains the clustering phenomenon based on housing prices and income factors. Finally, we bring out that the urban structure is changing. This study also has some shortcomings. It only considers the internal factor of social grade, and people's commuting patterns are often related to multiple factors. Future work can use more factors and use more complex clustering methods to explore commuting patterns in depth.
+
+Word count: 1599
 
 {{< pagebreak >}}
 
 ## References
-
-## Data Presentation
-
-Hello [@Verma2021].
-
-![Matrix of origin-destination (flow) data](../picture/matrix.png)
-
-| Default | Left | Right | Center |
-|---------|:-----|------:|:------:|
-| 12      | 12   |    12 |   12   |
-| 123     | 123  |   123 |  123   |
-| 1       | 1    |     1 |   1    |
-
-: 123
-
-```{python}
-# \vspace{100pt}
-```

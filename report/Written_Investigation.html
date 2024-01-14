@@ -53,6 +53,8 @@ div.csl-indent {
 <link href="Written_Investigation_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="Written_Investigation_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -64,7 +66,7 @@ div.csl-indent {
     <h2 id="toc-title">On this page</h2>
    
   <ul class="collapse">
-  <li><a href="#london" id="toc-london" class="nav-link active" data-scroll-target="#london">London</a>
+  <li><a href="#analysis-of-commuting-patterns-between-middle-layer-super-output-areas-msoas-in-london-based-on-clustering-method" id="toc-analysis-of-commuting-patterns-between-middle-layer-super-output-areas-msoas-in-london-based-on-clustering-method" class="nav-link active" data-scroll-target="#analysis-of-commuting-patterns-between-middle-layer-super-output-areas-msoas-in-london-based-on-clustering-method">Analysis of commuting patterns between Middle layer Super Output Areas (MSOAs) in London based on clustering method</a>
   <ul class="collapse">
   <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
   <li><a href="#literature-review" id="toc-literature-review" class="nav-link" data-scroll-target="#literature-review">Literature Review</a></li>
@@ -74,7 +76,6 @@ div.csl-indent {
   <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">Discussion</a></li>
   <li><a href="#conclusions" id="toc-conclusions" class="nav-link" data-scroll-target="#conclusions">Conclusions</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
-  <li><a href="#data-presentation-1" id="toc-data-presentation-1" class="nav-link" data-scroll-target="#data-presentation-1">Data Presentation</a></li>
   </ul></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="Written_Investigation.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
@@ -98,81 +99,212 @@ div.csl-indent {
 
 </header>
 
-<section id="london" class="level1">
-<h1>London</h1>
+<section id="analysis-of-commuting-patterns-between-middle-layer-super-output-areas-msoas-in-london-based-on-clustering-method" class="level1">
+<h1>Analysis of commuting patterns between Middle layer Super Output Areas (MSOAs) in London based on clustering method</h1>
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>Commuting patterns reflect a city’s economic geography <span class="citation" data-cites="Ratti2010">(<a href="#ref-Ratti2010" role="doc-biblioref">Ratti <em>et al.</em>, 2010</a>)</span>, and studying people’s commuting patterns is crucial to understanding a city’s economic development <span class="citation" data-cites="Martin2018">(<a href="#ref-Martin2018" role="doc-biblioref">Martin <em>et al.</em>, 2018</a>)</span>. The Census provides large and complex commuting data for this purpose, which are presented in the form of an origin-destination stream that reflects the mobility of people between regions. In addition, differences between populations should not be ignored when analyzing mobility data <span class="citation" data-cites="Shen2019">(<a href="#ref-Shen2019" role="doc-biblioref">Shen and Batty, 2019</a>)</span>. Therefore, this study will be based on commuting data from the London regional census, focusing on exploring whether the mobility patterns of people of different social grade in different Middle layer Super Output Areas (MSOAs) show clustering phenomena. We first assume that this pattern is completely spatially random, which also suggests that people’s usual working locations are randomly distributed. The correctness of the hypothesis will be tested in the subsequent analysis.</p>
 </section>
 <section id="literature-review" class="level2">
 <h2 class="anchored" data-anchor-id="literature-review">Literature Review</h2>
-<p>Hello <span class="citation" data-cites="Verma2021">(<a href="#ref-Verma2021" role="doc-biblioref">Verma <em>et al.</em>, 2021</a>)</span>.</p>
+<p>Origin-destination (OD) flow data can be regarded as trajectory data with a coarser resolution in time and space. It retains the geographical location information of the starting point and end point of the real trajectory, implying the direction and distance of the trajectory <span class="citation" data-cites="Guo2014">(<a href="#ref-Guo2014" role="doc-biblioref">Guo and Zhu, 2014</a>)</span>. The idea of using clustering to analyze OD flow is divided into point-based clustering and line-based clustering <span class="citation" data-cites="Guo2020">(<a href="#ref-Guo2020" role="doc-biblioref">Guo <em>et al.</em>, 2020</a>)</span>. Point-based clustering considers the similarity of points and is based on metrics such as Euclidean distance, using K-means <span class="citation" data-cites="Heredia2022">(<a href="#ref-Heredia2022" role="doc-biblioref">Heredia, Moreno and Yushimito, 2022</a>)</span>, hierarchical clustering <span class="citation" data-cites="Zhu2014">(<a href="#ref-Zhu2014" role="doc-biblioref">Zhu and Guo, 2014</a>)</span>, Density-based clustering <span class="citation" data-cites="Pei2015">(<a href="#ref-Pei2015" role="doc-biblioref">Pei <em>et al.</em>, 2015</a>)</span>, etc. to find point clusters. Line-based clustering considers the similarity of lines and is based on metrics such as Dynamic Time Warping (DTW) distance or geometric features, using TR-OPTICS <span class="citation" data-cites="Shuliang2018">(<a href="#ref-Shuliang2018" role="doc-biblioref">Shuliang <em>et al.</em>, 2018</a>)</span>, Fast-clusiVAT <span class="citation" data-cites="Kumar2018">(<a href="#ref-Kumar2018" role="doc-biblioref">Kumar <em>et al.</em>, 2018</a>)</span>, TRACLUS [@ Lee2007] and other methods to find line clusters. In general, point-based clustering is easier to implement, and the computational complexity is lower than line-based clustering. For more complex origin-destination (OD) flow data or trajectory data, more accurate clustering results can be obtained by using line-based clustering methods.</p>
 </section>
 <section id="data-presentation" class="level2">
 <h2 class="anchored" data-anchor-id="data-presentation">Data Presentation</h2>
-</section>
-<section id="methodology" class="level2">
-<h2 class="anchored" data-anchor-id="methodology">Methodology</h2>
-</section>
-<section id="results" class="level2">
-<h2 class="anchored" data-anchor-id="results">Results</h2>
-</section>
-<section id="discussion" class="level2">
-<h2 class="anchored" data-anchor-id="discussion">Discussion</h2>
-</section>
-<section id="conclusions" class="level2">
-<h2 class="anchored" data-anchor-id="conclusions">Conclusions</h2>
-<div style="page-break-after: always;"></div>
-</section>
-<section id="references" class="level2">
-<h2 class="anchored" data-anchor-id="references">References</h2>
-</section>
-<section id="data-presentation-1" class="level2">
-<h2 class="anchored" data-anchor-id="data-presentation-1">Data Presentation</h2>
-<p>Hello <span class="citation" data-cites="Verma2021">(<a href="#ref-Verma2021" role="doc-biblioref">Verma <em>et al.</em>, 2021</a>)</span>.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../picture/show.png" title="abc" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">1</figcaption>
-</figure>
-</div>
+<p>This study uses origin-destination data from the 2021 UK Census <span class="citation" data-cites="zotero-272">(<a href="#ref-zotero-272" role="doc-biblioref"><span>“Origin-destination data, <span>England</span> and <span>Wales</span>: <span>Census</span> 2021 - <span>Nomis</span> - <span>Official Census</span> and <span>Labour Market Statistics</span>,”</span> no date</a>)</span>. Specifically, Origin-destination public data contains a total of 30 datasets, consisting of main flows, univariate and multivariate datasets. These datasets are divided into four types. We selected the OD flow dataset divided by approximated social grade, which belongs to the Origin-destination Workplace data type.</p>
+<p>This dataset has a total of 3760,466 rows of data. The data of London MSOAs was selected through filtering, and there are specifically 565,668 rows. The dataset contains several main key fields, as shown in Table 1. The four social grade are represented below by AB, C1, C2, and DE. By selecting the top 50 pieces of data with the most traffic, the OD matrix is drawn, as shown in Figure 1, which clearly presents the relationship between the origin and the destination. It is not difficult to find that the matrix has no values in most cells, which indicates that the OD matrix is a sparse matrix in most cases. In addition, cells with numerical values are clustered on specific vertical coordinates (destination).</p>
+<p>Further combined with the location information of MSOAs, the 100 pieces of data with the most traffic in different social grade were selected. The spatial distribution of OD flow is shown in Figure 2. From Figure 2, it can be clearly found that there is an obvious clustering phenomenon in the working places of people of different social grade, and there are also different clustering phenomena between different social grade. Next, quantitative clustering methods will be used for analysis.</p>
 <table class="table">
-<caption>123</caption>
+<caption>The main key fields of origin-destination flow data</caption>
+<colgroup>
+<col style="width: 30%">
+<col style="width: 69%">
+</colgroup>
 <thead>
 <tr class="header">
-<th>Default</th>
-<th style="text-align: left;">Left</th>
-<th style="text-align: right;">Right</th>
-<th style="text-align: center;">Center</th>
+<th>Key fields</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>12</td>
-<td style="text-align: left;">12</td>
-<td style="text-align: right;">12</td>
-<td style="text-align: center;">12</td>
+<td>MSOAs code</td>
+<td>Origin area code</td>
 </tr>
 <tr class="even">
-<td>123</td>
-<td style="text-align: left;">123</td>
-<td style="text-align: right;">123</td>
-<td style="text-align: center;">123</td>
+<td>MSOA of workplace code</td>
+<td>Destination area code</td>
 </tr>
 <tr class="odd">
-<td>1</td>
-<td style="text-align: left;">1</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: center;">1</td>
+<td>Approximated social grade</td>
+<td>There are four social grades in total: AB, C1, C2, and DE</td>
+</tr>
+<tr class="even">
+<td></td>
+<td><ul>
+<li>AB: Higher and intermediate managerial/administrative/professional occupations</li>
+<li>C1: Supervisory, clerical and junior managerial/administrative/professional occupations</li>
+<li>C2: Skilled manual occupations</li>
+<li>DE: Semi-skilled and unskilled manual occupations; unemployed and lowest grade occupations</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td>Count</td>
+<td>Commuting flows</td>
 </tr>
 </tbody>
 </table>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../picture/matrix.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption class="figure-caption">Matrix of origin-destination flow data</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../picture/flow_data_map.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption class="figure-caption">Spatial distribution of origin-destination flow data</figcaption>
+</figure>
+</div>
+</section>
+<section id="methodology" class="level2">
+<h2 class="anchored" data-anchor-id="methodology">Methodology</h2>
+<p>Since K-means is a commonly used and relatively simple clustering method that can quickly provide clustering results with certain reasonableness, K-means is first used to perform cluster analysis on the OD flow data of people of different social grade. The core of K-means is to aggregate n data into specified k clusters based on the similarity between the data. The similarity between the data is calculated using the Euclidean distance. The K-means method is greatly affected by the K value, so choosing a reasonable K value will determine the accuracy of the clustering results. We use four methods to determine the K value for comprehensive comparison. These methods are Elbow Method, Silhouette Score, Calinski-Harabasz Index, and Davies-Bouldin Index. Select different K values to calculate the results of these four methods respectively, as shown in Figure 3. Elbow Method needs to find the critical point of data change. Silhouette Score and Calinski-Harabasz Index both have a larger value, the better, while the Davies-Bouldin Index value has a smaller value, the better. Therefore, through Figure 3 we determine that for the OD flow data with a social level of AB, the K value is 5; For the OD flow data with a social level of C1, the K value is 6; For the OD flow data with a social level of C2, the K value is 2 ; For OD flow data whose social grade is DE, the K value is 8. After selecting a reasonable K value, the K-means method can be applied for cluster analysis.</p>
+<p>Considering that the actual OD flow dataset can have clusters of arbitrary shapes and some abnormal data, using K-means may not be able to obtain more appropriate clustering results, so density-based clustering methods can be used. Hierarchical Density-Based Spatial Clustering of Applications with Noise (HDBSCAN), as a stable density-based clustering method, is an improved method of Density-based spatial clustering of applications with noise (DBSCAN). HDBSCAN first uses mutual reachability distance to measure the similarity of two points. Mutual reachability distance is defined as</p>
+<p><span class="math display">\[
+d_{\text{mreach}-k}(a, b) = \max \{\text{core}_k(a), \text{core}_k(b), d(a, b)\},
+\]</span></p>
+<p>where <span class="math display">\[ d(a, b) \]</span> represents the original distance between point a and point b, and <span class="math display">\[ \text{core}_k(b) \]</span> is defined as the current point x to its k-th distance between close points. And the mutual reachability distance allow HDBSCAN to handle data with uneven density. After that, the minimum spanning tree is used to construct a hierarchical tree model between points, and the idea of hierarchical clustering is introduced. This allows HDBSCAN to automatically obtain optimal clustering results by simply setting the minimum size of the cluster (minPts). For the OD flow dataset, after many attempts, it was determined that minPts was set to 4.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../picture/Kmeans_cluster_number.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption class="figure-caption">Four ways to choose the appropriate K value</figcaption>
+</figure>
+</div>
+</section>
+<section id="results" class="level2">
+<h2 class="anchored" data-anchor-id="results">Results</h2>
+<p>The clustering results of K-means are shown in Figure 4. At the same time, we calculated the area with the highest occurrence of work location in the clustering results, and the results are shown in Table 2. Combining Figure 4 and Table 2, it can be found that the workplaces of people with social grade AB are basically located in City of London 001, and their residences are also in areas closer to the city center; The workplaces of people with social grade C1 are mostly located in Hillingdon 031, a small number of work places are scattered in different locations in the city; Most of the work places of people with social grade C2 are also in Hillingdon 031, and the rest of the work places are scattered in the northeastern area of the city; People with social grade DE have a large number of work places at Hillingdon 031 and Brent 027, with the remaining work locations scattered across the city.</p>
+<p>The clustering results of HDBSCAN are shown in Figure 5, and the results are more detailed. The clustering results of the social grade AB are divided into 5 clusters, which more carefully divides the OD flow of different commuting distances and directions; The clustering results of the social grade C1 are divided into more clusters, and it can be found that there are many smaller clusters around Hillingdon 031; The clustering results of social grade C2 are also divided into more clusters, spread in the west, south and northeast of the city; The clustering results of social grade DE are roughly the same as K-means.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../picture/Kmeans_result.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption class="figure-caption">Clustering results of K-means</figcaption>
+</figure>
+</div>
+<table class="table">
+<caption>MSOA with the highest occurrences of destination</caption>
+<colgroup>
+<col style="width: 20%">
+<col style="width: 31%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Social grade</th>
+<th>Main destination</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>AB</td>
+<td><ul>
+<li>City of London 001</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td>C1</td>
+<td><ul>
+<li>Hillingdon 031</li>
+<li>City of London 001</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td>C2</td>
+<td><ul>
+<li>Hillingdon 031</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td>DE</td>
+<td><ul>
+<li>Hillingdon 031</li>
+<li>Brent 027</li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../picture/Hdbscan_result.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption class="figure-caption">Clustering results of HDBSCAN</figcaption>
+</figure>
+</div>
+</section>
+<section id="discussion" class="level2">
+<h2 class="anchored" data-anchor-id="discussion">Discussion</h2>
+<p>Comparing the clustering results of K-means and HDNSCAN with London house prices per square meter map <span class="citation" data-cites="Plumplot">(<a href="#ref-Plumplot" role="doc-biblioref">Plumplot, no date b</a>)</span> and London net household income map <span class="citation" data-cites="Plumplota">(<a href="#ref-Plumplota" role="doc-biblioref">Plumplot, no date a</a>)</span>, we found that people with social grade AB have higher incomes and also live in places with higher housing prices; Some people with social grades of C1, C2, and DE also have higher incomes, but most of them live in places with cheaper housing prices. Other research shows that people with higher socioeconomic status can bear more commuting costs than those with lower socioeconomic status and therefore can adapt to longer trips <span class="citation" data-cites="Dargay2012">(<a href="#ref-Dargay2012" role="doc-biblioref">Dargay and Clark, 2012</a>)</span>, but it can also be found from the clustering results that there are still some people with lower economic status who may choose longer commuting distances due to housing prices.</p>
+<p>In addition, according to the London area demographic map <span class="citation" data-cites="Ibbetson2020">(<a href="#ref-Ibbetson2020" role="doc-biblioref">Ibbetson, Symonds and Hutchinson, 2020</a>)</span>, it is found that the area around Hillingdon 031 has a large population, and the northeastern region also has a large population, which is consistent with our clustering results. In addition, the clustering results are also highly correlated with job opportunities. From the London MSOA employment map <span class="citation" data-cites="Hill2018">(<a href="#ref-Hill2018" role="doc-biblioref">Hill <em>et al.</em>, 2018</a>)</span>, it can be clearly seen that most job opportunities are distributed around Hillingdon 031, City of London 001 and the eastern region. All these can illustrate the gradual emergence of multiple urban centers in London, and the need to pay attention to changes in regional structure in future urban planning.</p>
+</section>
+<section id="conclusions" class="level2">
+<h2 class="anchored" data-anchor-id="conclusions">Conclusions</h2>
+<p>This study applies K-means and HDBSCAN clustering methods to London OD flow data, analyzes the commuting patterns of people of different social grade among MSOAs, and explains the clustering phenomenon based on housing prices and income factors. Finally, we bring out that the urban structure is changing. This study also has some shortcomings. It only considers the internal factor of social grade, and people’s commuting patterns are often related to multiple factors. Future work can use more factors and use more complex clustering methods to explore commuting patterns in depth.</p>
+<p>Word count: 1599</p>
+<div style="page-break-after: always;"></div>
+</section>
+<section id="references" class="level2 unnumbered">
+
 
 </section>
 </section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body" role="list">
-<div id="ref-Verma2021" class="csl-entry" role="listitem">
-Verma, T. <em>et al.</em> (2021) <span>“Extracting spatiotemporal commuting patterns from public transit data,”</span> <em>Journal of Urban Mobility</em>, 1, p. 100004. doi: <a href="https://doi.org/10.1016/j.urbmob.2021.100004">10.1016/j.urbmob.2021.100004</a>.
+<div id="ref-Dargay2012" class="csl-entry" role="listitem">
+Dargay, J. M. and Clark, S. (2012) <span>“The determinants of long distance travel in <span>Great Britain</span>,”</span> <em>Transportation Research Part A: Policy and Practice</em>, 46(3), pp. 576–587. doi: <a href="https://doi.org/10.1016/j.tra.2011.11.016">10.1016/j.tra.2011.11.016</a>.
+</div>
+<div id="ref-Guo2014" class="csl-entry" role="listitem">
+Guo, D. and Zhu, X. (2014) <span>“Origin-<span>Destination Flow Data Smoothing</span> and <span>Mapping</span>,”</span> <em>IEEE Transactions on Visualization and Computer Graphics</em>, 20(12), pp. 2043–2052. doi: <a href="https://doi.org/10.1109/TVCG.2014.2346271">10.1109/TVCG.2014.2346271</a>.
+</div>
+<div id="ref-Guo2020" class="csl-entry" role="listitem">
+Guo, X. <em>et al.</em> (2020) <span>“An <span>OD Flow Clustering Method Based</span> on <span>Vector Constraints</span>: <span>A Case Study</span> for <span>Beijing Taxi Origin-Destination Data</span>,”</span> <em>ISPRS International Journal of Geo-Information</em>, 9(2), p. 128. doi: <a href="https://doi.org/10.3390/ijgi9020128">10.3390/ijgi9020128</a>.
+</div>
+<div id="ref-Heredia2022" class="csl-entry" role="listitem">
+Heredia, C., Moreno, S. and Yushimito, W. F. (2022) <span>“Characterization of <span>Mobility Patterns With</span> a <span>Hierarchical Clustering</span> of <span>Origin-Destination GPS Taxi Data</span>,”</span> <em>IEEE Transactions on Intelligent Transportation Systems</em>, 23(8), pp. 12700–12710. doi: <a href="https://doi.org/10.1109/TITS.2021.3116963">10.1109/TITS.2021.3116963</a>.
+</div>
+<div id="ref-Hill2018" class="csl-entry" role="listitem">
+Hill, A. <em>et al.</em> (2018) <em><span>CoM CityReport</span></em>. doi: <a href="https://doi.org/10.13140/RG.2.2.19319.93605">10.13140/RG.2.2.19319.93605</a>.
+</div>
+<div id="ref-Ibbetson2020" class="csl-entry" role="listitem">
+Ibbetson, A., Symonds, P. and Hutchinson, E. (2020) <span>“Data to support small area health impact modelling of air pollution in the <span>United Kingdom</span>,”</span> <em>Data in Brief</em>, 29, p. 105148. doi: <a href="https://doi.org/10.1016/j.dib.2020.105148">10.1016/j.dib.2020.105148</a>.
+</div>
+<div id="ref-Kumar2018" class="csl-entry" role="listitem">
+Kumar, D. <em>et al.</em> (2018) <span>“Fast and <span>Scalable Big Data Trajectory Clustering</span> for <span>Understanding Urban Mobility</span>,”</span> <em>IEEE Transactions on Intelligent Transportation Systems</em>, 19(11), pp. 3709–3722. doi: <a href="https://doi.org/10.1109/TITS.2018.2854775">10.1109/TITS.2018.2854775</a>.
+</div>
+<div id="ref-Martin2018" class="csl-entry" role="listitem">
+Martin, D. <em>et al.</em> (2018) <span>“Origin-destination geodemographics for analysis of travel to work flows,”</span> <em>Computers, Environment and Urban Systems</em>, 67, pp. 68–79. doi: <a href="https://doi.org/10.1016/j.compenvurbsys.2017.09.002">10.1016/j.compenvurbsys.2017.09.002</a>.
+</div>
+<div id="ref-zotero-272" class="csl-entry" role="listitem">
+<span>“Origin-destination data, <span>England</span> and <span>Wales</span>: <span>Census</span> 2021 - <span>Nomis</span> - <span>Official Census</span> and <span>Labour Market Statistics</span>”</span> (no date). Available at: <a href="https://www.nomisweb.co.uk/sources/census_2021_od">https://www.nomisweb.co.uk/sources/census_2021_od</a> (Accessed: January 13, 2024).
+</div>
+<div id="ref-Pei2015" class="csl-entry" role="listitem">
+Pei, T. <em>et al.</em> (2015) <span>“Density-based clustering for data containing two types of points,”</span> <em>International Journal of Geographical Information Science</em>, 29(2), pp. 175–193. doi: <a href="https://doi.org/10.1080/13658816.2014.955027">10.1080/13658816.2014.955027</a>.
+</div>
+<div id="ref-Plumplota" class="csl-entry" role="listitem">
+Plumplot (no date a) <span>“London <span>Average</span> salary and unemployment rates in graphs and numbers.”</span> Available at: <a href="https://www.plumplot.co.uk/London-salary-and-unemployment.html">https://www.plumplot.co.uk/London-salary-and-unemployment.html</a> (Accessed: January 14, 2024).
+</div>
+<div id="ref-Plumplot" class="csl-entry" role="listitem">
+Plumplot (no date b) <span>“London house prices per square metre in maps and graphs.”</span> Available at: <a href="https://www.plumplot.co.uk/London-house-prices-per-square-metre.html">https://www.plumplot.co.uk/London-house-prices-per-square-metre.html</a> (Accessed: January 14, 2024).
+</div>
+<div id="ref-Ratti2010" class="csl-entry" role="listitem">
+Ratti, C. <em>et al.</em> (2010) <span>“Redrawing the <span>Map</span> of <span>Great Britain</span> from a <span>Network</span> of <span>Human Interactions</span>,”</span> <em>PLoS ONE</em>. Edited by O. Sporns, 5(12), p. e14248. doi: <a href="https://doi.org/10.1371/journal.pone.0014248">10.1371/journal.pone.0014248</a>.
+</div>
+<div id="ref-Shen2019" class="csl-entry" role="listitem">
+Shen, Y. and Batty, M. (2019) <span>“Delineating the perceived functional regions of <span>London</span> from commuting flows,”</span> <em>Environment and Planning A: Economy and Space</em>, 51(3), pp. 547–550. doi: <a href="https://doi.org/10.1177/0308518X18786253">10.1177/0308518X18786253</a>.
+</div>
+<div id="ref-Shuliang2018" class="csl-entry" role="listitem">
+Shuliang, Y. <em>et al.</em> (2018) <span>“Spatial clustering method for taxi passenger trajectory,”</span> <em>Computer Engineering and Applications</em>, 54(14), p. 249. doi: <a href="https://doi.org/10.3778/j.issn.1002-8331.1703-0189">10.3778/j.issn.1002-8331.1703-0189</a>.
+</div>
+<div id="ref-Zhu2014" class="csl-entry" role="listitem">
+Zhu, X. and Guo, D. (2014) <span>“Mapping <span>Large Spatial Flow Data</span> with <span>Hierarchical Clustering</span>,”</span> <em>Transactions in GIS</em>, 18(3), pp. 421–435. doi: <a href="https://doi.org/10.1111/tgis.12100">10.1111/tgis.12100</a>.
 </div>
 </div></section></div></main>
 <!-- /main column -->
